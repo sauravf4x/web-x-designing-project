@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baretta - Luxury Fashion Redefined</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #070B1D;
+            --accent: #7B5CFF;
+            --text: #EAEAFF;
+            --glow: #B3A7FF;
+            --silver: #C0C0D8;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Enhanced Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10001;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--glow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: all 0.15s ease;
+            box-shadow: 0 0 30px rgba(123, 92, 255, 0.3);
+        }
+
+        .cursor-follower.active {
+            transform: scale(2);
+            background: rgba(123, 92, 255, 0.1);
+        }
+
+        /* 3D Canvas */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(7, 11, 29, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(123, 92, 255, 0.2);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo::before {
+            content: 'BARETTA';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--accent);
+            filter: blur(10px);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--glow));
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+            padding: 0 40px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 30px;
+            border: 1px solid var(--glow);
+            border-radius: 50px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--glow);
+            margin-bottom: 40px;
+            background: rgba(123, 92, 255, 0.1);
+            box-shadow: 0 0 30px rgba(123, 92, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 120px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--glow) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 5s linear infinite;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .hero .tagline {
+            font-size: 24px;
+            color: var(--silver);
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--glow));
+            color: var(--bg-primary);
+            box-shadow: 0 10px 40px rgba(123, 92, 255, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(123, 92, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            box-shadow: 0 10px 40px rgba(123, 92, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeIn 1s ease 1.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .scroll-text {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            margin: 0 auto;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(20px); opacity: 0; }
+        }
+
+        /* Content Sections */
+        .section {
+            position: relative;
+            min-height: 100vh;
+            padding: 150px 60px;
+            z-index: 1;
+            background: rgba(7, 11, 29, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--silver);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Featured Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            position: relative;
+            border: 1px solid rgba(123, 92, 255, 0.2);
+            background: rgba(123, 92, 255, 0.05);
+            transition: all 0.6s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-20px);
+            box-shadow: 0 30px 60px rgba(123, 92, 255, 0.3);
+            background: rgba(123, 92, 255, 0.1);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: rgba(7, 11, 29, 0.5);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent), var(--glow));
+            color: var(--bg-primary);
+            padding: 8px 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(123, 92, 255, 0.5);
+        }
+
+        .product-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(123, 92, 255, 0.2));
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .product-card:hover .product-glow {
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--glow);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 150px 60px;
+            background: rgba(123, 92, 255, 0.05);
+            border-top: 1px solid rgba(123, 92, 255, 0.2);
+            border-bottom: 1px solid rgba(123, 92, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 50px 30px;
+            border: 1px solid rgba(123, 92, 255, 0.3);
+            background: rgba(7, 11, 29, 0.5);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .stat-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            background: rgba(123, 92, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(123, 92, 255, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 200px 60px;
+            position: relative;
+        }
+
+        .experience-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .experience-text {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+
+        .experience-text.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .experience-text h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .experience-text p {
+            font-size: 18px;
+            line-height: 2;
+            color: var(--silver);
+            margin-bottom: 25px;
+        }
+
+        .experience-visual {
+            position: relative;
+            height: 600px;
+            border: 1px solid rgba(123, 92, 255, 0.3);
+            background: rgba(123, 92, 255, 0.05);
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+
+        .experience-visual.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .experience-visual::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--accent), var(--glow), var(--accent));
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+            opacity: 0.5;
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 200px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(123, 92, 255, 0.1), rgba(179, 167, 255, 0.05));
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .cta-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-content h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text), var(--glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            color: var(--silver);
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .experience-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .section-title {
+                font-size: 42px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            .cursor, .cursor-follower {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursors -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- 3D Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">BARETTA</div>
+        <ul class="nav-links">
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="cart.html">Cart (0)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Future of Fashion</div>
+        <h1>BARETTA</h1>
+        <div class="tagline">Where Innovation Meets Luxury</div>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+            <a href="about.html" class="btn btn-secondary">Our Story</a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-text">Scroll to Discover</div>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Signature Collection</div>
+            <h2 class="section-title">Featured Pieces</h2>
+            <p class="section-subtitle">Discover our handpicked selection of avant-garde fashion pieces that redefine luxury.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=800&q=90" alt="Silk Evening Gown">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Haute Couture</div>
+                    <div class="product-name">Silk Evening Gown</div>
+                    <div class="product-price">$2,499</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1594938384066-6b5f7c0b9b42?w=800&q=90" alt="Tailored Suit">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Trending</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Bespoke</div>
+                    <div class="product-name">Italian Wool Suit</div>
+                    <div class="product-price">$3,299</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=800&q=90" alt="Leather Bag">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Handcrafted Leather Bag</div>
+                    <div class="product-price">$1,899</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Years Excellence</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500K</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="experience-content">
+            <div class="experience-text">
+                <h2>The Baretta Experience</h2>
+                <p>Step into a world where traditional craftsmanship meets cutting-edge innovation. Every piece tells a story of meticulous attention to detail and unwavering commitment to excellence.</p>
+                <p>From the finest materials sourced globally to the skilled hands of our artisans, we create fashion that transcends time and trends.</p>
+                <p>Experience luxury redefined. Experience Baretta.</p>
+                <a href="about.html" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="experience-visual">
+                <!-- 3D visual element placeholder -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Elevate Your Style?</h2>
+            <p>Join thousands of fashion enthusiasts who have discovered the Baretta difference. Explore our exclusive collections today.</p>
+            <div class="hero-cta">
+                <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+                <a href="collections.html" class="btn btn-secondary">View Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // Enhanced Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            const speed = 0.3;
+            const followerSpeed = 0.08;
+
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+            followerX += (mouseX - followerX) * followerSpeed;
+            followerY += (mouseY - followerY) * followerSpeed;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button, .product-card').forEach(el => {
+            el.addEventListener('mouseenter', () => follower.classList.add('active'));
+            el.addEventListener('mouseleave', () => follower.classList.remove('active'));
+        });
+
+        // Advanced 3D Scene
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x070B1D, 0.008);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ 
+            alpha: true, 
+            antialias: true,
+            powerPreference: "high-performance"
+        });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Advanced Lighting
+        const ambientLight = new THREE.AmbientLight(0xEAEAFF, 0.2);
+        scene.add(ambientLight);
+
+        const pointLight1 = new THREE.PointLight(0x7B5CFF, 2, 100);
+        pointLight1.position.set(20, 20, 20);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xB3A7FF, 1.5, 100);
+        pointLight2.position.set(-20, -20, -10);
+        scene.add(pointLight2);
+
+        const spotLight = new THREE.SpotLight(0x7B5CFF, 3);
+        spotLight.position.set(0, 30, 20);
+        spotLight.angle = Math.PI / 4;
+        spotLight.penumbra = 0.5;
+        scene.add(spotLight);
+
+        // Massive Particle System
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+        const colorsArray = new Float32Array(particlesCount * 3);
+        const sizesArray = new Float32Array(particlesCount);
+
+        for(let i = 0; i < particlesCount * 3; i += 3) {
+            posArray[i] = (Math.random() - 0.5) * 200;
+            posArray[i + 1] = (Math.random() - 0.5) * 200;
+            posArray[i + 2] = (Math.random() - 0.5) * 200;
+
+            // Purple gradient colors
+            const colorChoice = Math.random();
+            if (colorChoice < 0.33) {
+                colorsArray[i] = 0.48; colorsArray[i+1] = 0.36; colorsArray[i+2] = 1; // #7B5CFF
+            } else if (colorChoice < 0.66) {
+                colorsArray[i] = 0.70; colorsArray[i+1] = 0.65; colorsArray[i+2] = 1; // #B3A7FF
+            } else {
+                colorsArray[i] = 0.92; colorsArray[i+1] = 0.92; colorsArray[i+2] = 1; // #EAEAFF
+            }
+
+            sizesArray[i/3] = Math.random() * 0.08 + 0.02;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+        particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizesArray, 1));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.05,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true
+        });
+
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        // Glowing Geometric Shapes
+        const geometries = [];
+
+        // Icosahedron
+        const icoGeo = new THREE.IcosahedronGeometry(5, 0);
+        const icoMat = new THREE.MeshStandardMaterial({
+            color: 0x7B5CFF,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3,
+            emissive: 0x7B5CFF,
+            emissiveIntensity: 0.5
+        });
+        const icosahedron = new THREE.Mesh(icoGeo, icoMat);
+        icosahedron.position.set(-15, 0, -20);
+        scene.add(icosahedron);
+        geometries.push(icosahedron);
+
+        // Torus Knot
+        const torusGeo = new THREE.TorusKnotGeometry(3, 1, 100, 16);
+        const torusMat = new THREE.MeshStandardMaterial({
+            color: 0xB3A7FF,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.25,
+            emissive: 0xB3A7FF,
+            emissiveIntensity: 0.3
+        });
+        const torusKnot = new THREE.Mesh(torusGeo, torusMat);
+        torusKnot.position.set(15, -10, -25);
+        scene.add(torusKnot);
+        geometries.push(torusKnot);
+
+        // Dodecahedron
+        const dodecaGeo = new THREE.DodecahedronGeometry(4, 0);
+        const dodecaMat = new THREE.MeshStandardMaterial({
+            color: 0xEAEAFF,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.2,
+            emissive: 0xEAEAFF,
+            emissiveIntensity: 0.4
+        });
+        const dodecahedron = new THREE.Mesh(dodecaGeo, dodecaMat);
+        dodecahedron.position.set(0, 15, -30);
+        scene.add(dodecahedron);
+        geometries.push(dodecahedron);
+
+        // Floating Crystals
+        const crystals = [];
+        for(let i = 0; i < 50; i++) {
+            const size = Math.random() * 0.5 + 0.3;
+            const crystalGeo = new THREE.OctahedronGeometry(size, 0);
+            const crystalMat = new THREE.MeshPhysicalMaterial({
+                color: 0x7B5CFF,
+                metalness: 0.9,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.4,
+                emissive: 0x7B5CFF,
+                emissiveIntensity: 0.2
+            });
+            
+            const crystal = new THREE.Mesh(crystalGeo, crystalMat);
+            crystal.position.x = (Math.random() - 0.5) * 80;
+            crystal.position.y = (Math.random() - 0.5) * 80;
+            crystal.position.z = (Math.random() - 0.5) * 80;
+            
+            crystal.userData.rotationSpeed = {
+                x: (Math.random() - 0.5) * 0.02,
+                y: (Math.random() - 0.5) * 0.02,
+                z: (Math.random() - 0.5) * 0.02
+            };
+            
+            crystals.push(crystal);
+            scene.add(crystal);
+        }
+
+        camera.position.z = 30;
+
+        // Mouse & Scroll
+        let targetX = 0, targetY = 0;
+        let currentX = 0, currentY = 0;
+        let scrollY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            targetX = (event.clientX / window.innerWidth) * 2 - 1;
+            targetY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.001;
+
+            // Smooth camera movement
+            currentX += (targetX - currentX) * 0.05;
+            currentY += (targetY - currentY) * 0.05;
+
+            camera.position.x = currentX * 6;
+            camera.position.y = currentY * 6;
+            camera.lookAt(scene.position);
+
+            // Scroll-based depth
+            camera.position.z = 30 - scrollY * 0.01;
+
+            // Rotate particles
+            particles.rotation.y += 0.0002;
+            particles.rotation.x = Math.sin(time * 0.3) * 0.05;
+
+            // Animate geometries
+            icosahedron.rotation.x += 0.003;
+            icosahedron.rotation.y += 0.005;
+            icosahedron.position.y = Math.sin(time) * 3;
+
+            torusKnot.rotation.x += 0.002;
+            torusKnot.rotation.y += 0.004;
+            torusKnot.position.y = Math.cos(time * 0.8) * 2;
+
+            dodecahedron.rotation.z += 0.004;
+            dodecahedron.rotation.y += 0.003;
+
+            // Animate crystals
+            crystals.forEach((crystal, index) => {
+                crystal.rotation.x += crystal.userData.rotationSpeed.x;
+                crystal.rotation.y += crystal.userData.rotationSpeed.y;
+                crystal.rotation.z += crystal.userData.rotationSpeed.z;
+                
+                crystal.position.y += Math.sin(time * 0.5 + index * 0.1) * 0.01;
+                crystal.position.x += Math.cos(time * 0.3 + index * 0.15) * 0.005;
+            });
+
+            // Animate lights
+            pointLight1.position.x = Math.sin(time * 0.5) * 30;
+            pointLight1.position.z = Math.cos(time * 0.5) * 30;
+            
+            pointLight2.position.x = Math.cos(time * 0.7) * 25;
+            pointLight2.position.z = Math.sin(time * 0.7) * 25;
+
+            spotLight.position.x = Math.sin(time * 0.3) * 20;
+            spotLight.position.y = 30 + Math.cos(time * 0.4) * 10;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-header, .product-card, .stat-card, .experience-text, .experience-visual, .cta-content').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
