@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baretta - Collections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <canvas id="loading-canvas"></canvas>
+        <div class="loading-text">BARETTA</div>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
+    </div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div id="canvas-container"></div>
+    <nav>
+        <div class="logo">BARETTA</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="collections.html" class="active">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+    <section class="page-hero">
+        <h1>COLLECTIONS</h1>
+        <p>Curated Excellence in Every Piece</p>
+    </section>
+    <section class="collections-section">
+        <div class="collections-grid">
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=90" alt="Women" class="collection-image">
+                <div class="collection-overlay">
+                    <div class="collection-category">Haute Couture</div>
+                    <div class="collection-title">WOMEN</div>
+                    <p class="collection-description">Timeless elegance meets contemporary design in our exquisite women's collection.</p>
+                    <div class="collection-count">154 Pieces</div>
+                    <a href="shop.html" class="btn">Explore Collection</a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=1200&q=90" alt="Men" class="collection-image">
+                <div class="collection-overlay">
+                    <div class="collection-category">Bespoke</div>
+                    <div class="collection-title">MEN</div>
+                    <p class="collection-description">Sophisticated craftsmanship for the modern gentleman.</p>
+                    <div class="collection-count">128 Pieces</div>
+                    <a href="shop.html" class="btn">Explore Collection</a>
+                </div>
+            </div>
+            <div class="collection-card special-collection">
+                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=90" alt="Accessories" class="collection-image">
+                <div class="collection-overlay">
+                    <div class="collection-category">Luxury Details</div>
+                    <div class="collection-title">ACCESSORIES</div>
+                    <p class="collection-description">The finishing touch to perfection. Handcrafted details that complete your signature look.</p>
+                    <div class="collection-count">89 Pieces</div>
+                    <a href="shop.html" class="btn">Explore Collection</a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=90" alt="Heritage" class="collection-image">
+                <div class="collection-overlay">
+                    <div class="collection-category">Limited Edition</div>
+                    <div class="collection-title">HERITAGE</div>
+                    <p class="collection-description">Iconic designs reimagined for the modern era.</p>
+                    <div class="collection-count">45 Pieces</div>
+                    <a href="shop.html" class="btn">Explore Collection</a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=1200&q=90" alt="Evening" class="collection-image">
+                <div class="collection-overlay">
+                    <div class="collection-category">Glamour</div>
+                    <div class="collection-title">EVENING</div>
+                    <p class="collection-description">Make every entrance unforgettable.</p>
+                    <div class="collection-count">67 Pieces</div>
+                    <a href="shop.html" class="btn">Explore Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

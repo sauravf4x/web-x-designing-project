@@ -1,0 +1,49 @@
+🚀 BARETTA WEBSITE - QUICK SETUP GUIDE
+=======================================
+
+📁 WHAT YOU NEED:
+All files must be in the SAME folder:
+- home.html
+- collections.html
+- shop.html
+- about.html
+- cart.html
+- style.css
+- script.js
+- README.md (this explains everything)
+
+🎯 TO VIEW YOUR WEBSITE:
+1. Make sure all files are in one folder
+2. Double-click "home.html"
+3. Your website opens in your browser!
+4. Use the top navigation to explore all pages
+
+✨ PAGES INCLUDED:
+✓ Home - Landing page with hero & featured products
+✓ Collections - 5 luxury collections
+✓ Shop - 12 products with filters & cart
+✓ About - Brand story & timeline
+✓ Cart - Shopping cart with checkout
+
+🎨 FEATURES:
+✓ 3D animated background on every page
+✓ 3D loading animation
+✓ Custom glowing cursor
+✓ Smooth scroll animations
+✓ Working shopping cart
+✓ Product filters
+✓ Fully responsive (works on phones!)
+
+📖 FULL DOCUMENTATION:
+See README.md for complete customization guide,
+troubleshooting, deployment options, and more!
+
+💻 LOCAL SERVER (Optional):
+python3 -m http.server 8000
+Then open: http://localhost:8000/home.html
+
+🌐 DEPLOY ONLINE:
+- Drag & drop to netlify.com/drop
+- Or upload to any web hosting
+
+Need help? Check README.md for detailed instructions!

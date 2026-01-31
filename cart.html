@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baretta - Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <canvas id="loading-canvas"></canvas>
+        <div class="loading-text">BARETTA</div>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
+    </div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div id="canvas-container"></div>
+    <nav>
+        <div class="logo">BARETTA</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="cart.html" class="active">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+    <section class="page-hero">
+        <h1>SHOPPING CART</h1>
+        <p>Review Your Selections</p>
+    </section>
+    <section class="cart-section">
+        <div class="cart-container">
+            <div class="cart-items" id="cart-items-container">
+                <div class="empty-cart" id="empty-cart">
+                    <div class="empty-cart-icon">🛍️</div>
+                    <h3>Your Cart is Empty</h3>
+                    <p>Discover our exquisite collections and add luxury to your life.</p>
+                    <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="summary-row">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value" id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Shipping</span>
+                    <span class="summary-value">Free</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Tax (8%)</span>
+                    <span class="summary-value" id="tax">$0.00</span>
+                </div>
+                <div class="summary-total">
+                    <span class="total-label">Total</span>
+                    <span class="total-value" id="total">$0.00</span>
+                </div>
+                <button class="btn btn-primary" style="width:100%; margin-top:30px;" onclick="checkout()">Proceed to Checkout</button>
+                <a href="shop.html" class="btn btn-secondary" style="width:100%; margin-top:15px; text-align:center;">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

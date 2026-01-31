@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baretta - About</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <canvas id="loading-canvas"></canvas>
+        <div class="loading-text">BARETTA</div>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
+    </div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div id="canvas-container"></div>
+    <nav>
+        <div class="logo">BARETTA</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+    <section class="page-hero">
+        <h1>OUR STORY</h1>
+        <p>A Legacy of Excellence, Craftsmanship, and Innovation</p>
+    </section>
+    <section class="story-section">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>The Baretta Heritage</h2>
+                <p>Founded in 1999, Baretta emerged from a vision to redefine luxury fashion. What began as a small atelier in Milan has evolved into a global symbol of sophistication and style.</p>
+                <p>Every piece we create tells a story of meticulous craftsmanship, sourced from the finest materials across the world. Our artisans blend traditional techniques with contemporary innovation.</p>
+                <p>We believe true luxury is not just about what you wear, but how it makes you feel—confident, empowered, and unmistakably elegant.</p>
+            </div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1558769132-cb1aea016ca9?w=1000&q=90" alt="Baretta Heritage">
+            </div>
+        </div>
+    </section>
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500K</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Countries Worldwide</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Satisfaction Rate</div>
+            </div>
+        </div>
+    </section>
+    <section class="timeline-section">
+        <h2 class="timeline-title">Our Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1999</div>
+                <div class="timeline-content">
+                    <h3>The Beginning</h3>
+                    <p>Baretta was founded in Milan by renowned designer Alessandro Baretta, opening our first boutique atelier.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2005</div>
+                <div class="timeline-content">
+                    <h3>Global Expansion</h3>
+                    <p>Expanded internationally with flagship stores in Paris, London, and New York, establishing our global presence.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-content">
+                    <h3>Heritage Collection</h3>
+                    <p>Launched our Heritage Collection, celebrating timeless designs with modern craftsmanship and sustainable practices.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-content">
+                    <h3>Bespoke Service</h3>
+                    <p>Introduced our bespoke service, offering personalized luxury experiences to discerning clientele worldwide.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3>25th Anniversary</h3>
+                    <p>Celebrating 25 years of excellence with exclusive collections and continued commitment to unparalleled quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="values-section">
+        <h2 class="values-title">Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">✨</div>
+                <div class="value-title">Excellence</div>
+                <p class="value-text">We pursue perfection in every stitch, every detail, every piece. Our commitment to excellence is unwavering.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎨</div>
+                <div class="value-title">Craftsmanship</div>
+                <p class="value-text">Master artisans bring decades of expertise to create pieces that stand the test of time.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌿</div>
+                <div class="value-title">Sustainability</div>
+                <p class="value-text">We source responsibly and embrace sustainable practices to protect our planet for future generations.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💎</div>
+                <div class="value-title">Luxury</div>
+                <p class="value-text">True luxury is timeless. We create pieces that transcend trends and become cherished heirlooms.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <div class="value-title">Integrity</div>
+                <p class="value-text">Honesty and transparency guide every decision we make, from sourcing to customer service.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <div class="value-title">Innovation</div>
+                <p class="value-text">We honor tradition while embracing innovation, creating designs that are both classic and contemporary.</p>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

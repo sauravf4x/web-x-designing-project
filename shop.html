@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baretta - Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <canvas id="loading-canvas"></canvas>
+        <div class="loading-text">BARETTA</div>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
+    </div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div id="canvas-container"></div>
+    <nav>
+        <div class="logo">BARETTA</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+    <section class="page-hero">
+        <h1>SHOP</h1>
+        <p>Discover Luxury Fashion</p>
+    </section>
+    <section class="shop-section">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Products</button>
+            <button class="filter-btn" data-filter="women">Women</button>
+            <button class="filter-btn" data-filter="men">Men</button>
+            <button class="filter-btn" data-filter="accessories">Accessories</button>
+        </div>
+        <div class="products-grid" id="shop-grid">
+            <div class="product-card" data-category="women">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=90" alt="Silk Evening Dress">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">New</span>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Silk Evening Dress', 399, 'women')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Wear</div>
+                    <div class="product-name">Silk Evening Dress</div>
+                    <div class="product-price"><span class="old-price">$499</span> $399</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="men">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=90" alt="Tailored Blazer">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Trending</span>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Tailored Blazer', 599, 'men')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Wear</div>
+                    <div class="product-name">Tailored Blazer</div>
+                    <div class="product-price">$599</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=90" alt="Leather Handbag">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Limited</span>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Leather Handbag', 749, 'accessories')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Leather Handbag</div>
+                    <div class="product-price"><span class="old-price">$899</span> $749</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=90" alt="Designer Sunglasses">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Best Seller</span>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Designer Sunglasses', 299, 'accessories')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Designer Sunglasses</div>
+                    <div class="product-price">$299</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="women">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=90" alt="Cashmere Sweater">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Exclusive</span>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Cashmere Sweater', 459, 'women')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Wear</div>
+                    <div class="product-name">Cashmere Sweater</div>
+                    <div class="product-price">$459</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="men">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&q=90" alt="Oxford Shoes">
+                    <div class="product-glow"></div>
+                    <span class="product-badge">Premium</span>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Oxford Dress Shoes', 449, 'men')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Footwear</div>
+                    <div class="product-name">Oxford Dress Shoes</div>
+                    <div class="product-price"><span class="old-price">$549</span> $449</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="women">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=800&q=90" alt="Silk Blouse">
+                    <div class="product-glow"></div>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Silk Blouse', 329, 'women')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Wear</div>
+                    <div class="product-name">Silk Blouse</div>
+                    <div class="product-price">$329</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="men">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=800&q=90" alt="Wool Overcoat">
+                    <div class="product-glow"></div>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Wool Overcoat', 899, 'men')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Wear</div>
+                    <div class="product-name">Wool Overcoat</div>
+                    <div class="product-price">$899</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=90" alt="Leather Belt">
+                    <div class="product-glow"></div>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Italian Leather Belt', 199, 'accessories')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Italian Leather Belt</div>
+                    <div class="product-price">$199</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="women">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&q=90" alt="Evening Gown">
+                    <div class="product-glow"></div>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Evening Gown', 2499, 'women')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Evening</div>
+                    <div class="product-name">Evening Gown</div>
+                    <div class="product-price">$2,499</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="men">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1594938384066-6b5f7c0b9b42?w=800&q=90" alt="Bespoke Suit">
+                    <div class="product-glow"></div>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Italian Wool Suit', 3299, 'men')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Bespoke</div>
+                    <div class="product-name">Italian Wool Suit</div>
+                    <div class="product-price">$3,299</div>
+                </div>
+            </div>
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=90" alt="Designer Watch">
+                    <div class="product-glow"></div>
+                    <div class="product-overlay">
+                        <button class="add-to-cart-btn" onclick="addToCart('Designer Watch', 1599, 'accessories')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Designer Watch</div>
+                    <div class="product-price">$1,599</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
